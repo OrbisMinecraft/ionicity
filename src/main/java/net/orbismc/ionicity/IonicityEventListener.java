@@ -26,12 +26,6 @@ public class IonicityEventListener {
 	}
 
 	@Subscribe
-	public void onChooseServer(final @NotNull PlayerChooseInitialServerEvent event) {
-		final var lastServer = plugin.playerLastServers.getOrDefault(event.getPlayer().getUniqueId(), "hub");
-		event.setInitialServer(plugin.getServer().getServer(lastServer).get());
-	}
-
-	@Subscribe
 	public void onPlayerChat(final @NotNull PlayerChatEvent event) {
 		// Deny sending the original message at all
 		event.setResult(PlayerChatEvent.ChatResult.denied());
@@ -43,14 +37,13 @@ public class IonicityEventListener {
 	}
 
 	@Subscribe(order = PostOrder.LAST)
-	public void connect(ServerConnectedEvent event) {
+	public void connect(final @NotNull ServerConnectedEvent event) {
 		update();
 	}
 
 	@Subscribe(order = PostOrder.LAST)
-	public void disconnect(DisconnectEvent event) {
+	public void disconnect(final @NotNull DisconnectEvent event) {
 		update();
-		plugin.playerLastServers.put(event.getPlayer().getUniqueId(), event.getPlayer().getCurrentServer().get().getServerInfo().getName());
 	}
 
 	public void update() {
