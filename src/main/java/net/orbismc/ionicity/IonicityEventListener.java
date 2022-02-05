@@ -8,7 +8,6 @@ import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
-import com.velocitypowered.api.event.player.PlayerChooseInitialServerEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.player.TabListEntry;
@@ -22,10 +21,12 @@ import java.util.concurrent.TimeUnit;
  * sending cross-server messages.
  */
 public class IonicityEventListener {
+	private final IonicityChatFormatter formatter;
 	private final Ionicity plugin;
 
-	public IonicityEventListener(Ionicity plugin) {
+	public IonicityEventListener(Ionicity plugin, IonicityChatFormatter formatter) {
 		this.plugin = plugin;
+		this.formatter = formatter;
 		this.plugin.getServer().getScheduler().buildTask(plugin, this::update).repeat(1000, TimeUnit.MILLISECONDS).schedule();
 	}
 
@@ -36,7 +37,7 @@ public class IonicityEventListener {
 
 		// Broadcast message to all servers
 		for (final var target : plugin.getServer().getAllPlayers()) {
-			target.sendMessage(IonicityChatFormatter.format(event.getPlayer(), event.getMessage()));
+			target.sendMessage(this.formatter.format(event.getPlayer(), event.getMessage()));
 		}
 	}
 
