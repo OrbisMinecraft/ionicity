@@ -13,10 +13,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * Configuration data for <i>ionicity</i>-
@@ -24,6 +22,7 @@ import java.nio.file.Path;
 public final class IonicityConfig {
 	/**
 	 * Loads the configuration from a file.
+	 *
 	 * @param file The configuration file to load from.
 	 * @return The configuration
 	 */

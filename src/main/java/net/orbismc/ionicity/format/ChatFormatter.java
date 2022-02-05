@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 public interface ChatFormatter {
 	/**
 	 * Replaces the placeholders in the given format string with their proper value according to the given player.
- 	 * @param format The string in which to replace the placeholders.
+	 *
+	 * @param format The string in which to replace the placeholders.
 	 * @param player The player to insert values for.
 	 * @return The new, formatted, string.
 	 */
