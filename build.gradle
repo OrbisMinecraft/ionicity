@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'eclipse'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.0.1"
 }
 
@@ -18,6 +19,9 @@ repositories {
 dependencies {
     compileOnly 'com.velocitypowered:velocity-api:3.1.0'
     compileOnly 'net.luckperms:api:5.3'
+
+    implementation "net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT"
+
     annotationProcessor 'com.velocitypowered:velocity-api:3.1.0'
 }
 

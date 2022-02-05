@@ -10,7 +10,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.orbismc.ionicity.format.Formatter;
+import net.orbismc.ionicity.format.TemplateProvider;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
 
@@ -34,17 +34,23 @@ public class Ionicity {
 	@DataDirectory
 	private Path configurationDirectory;
 
+	private String format;
+
 	public ProxyServer getServer() {
 		return server;
+	}
+
+	public String getFormat() {
+		return this.format;
 	}
 
 	@Subscribe
 	public void onProxyInitialization(final @NonNull ProxyInitializeEvent event) {
 		final var config = IonicityConfig.load(configurationDirectory.resolve("config.yml").toFile());
-		final var formatter = new IonicityChatFormatter(config.getNode("format").getString("<%username%> %message%"));
+		this.format = config.getNode("format").getString("<<player-name>> <message>");
 
-		Formatter.addAvailableFormatters(server.getPluginManager());
+		TemplateProvider.addAvailableProviders(server.getPluginManager());
 
-		server.getEventManager().register(this, new IonicityEventListener(this, formatter));
+		server.getEventManager().register(this, new IonicityEventListener(this));
 	}
 }

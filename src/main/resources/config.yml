@@ -1,10 +1,10 @@
 # Basic placeholders:
-#   - %player_name%
-#   - %player_ping%
-#   - %player_server%
+#   - <player-name>
+#   - <player-ping>
+#   - <player-server>
 #   - %message%
 # LuckPerms placeholders:
-#   - %luckperms_prefix%
-#   - %luckperms_suffix%
-#   - %luckperms_meta_<var>%
-format: '(%luckperms_prefix%) %player_name% &7»&r %message%'
+#   - <luckperms-prefix>
+#   - <luckperms-suffix>
+#   - <luckperms-meta-<var>>
+format: '(<luckperms-prefix>) <player-name> <color:gray>»<reset> <message>'
