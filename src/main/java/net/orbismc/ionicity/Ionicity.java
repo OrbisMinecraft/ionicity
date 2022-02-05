@@ -21,6 +21,7 @@ import java.nio.file.Path;
 		id = "ionicity",
 		name = "Ionicity",
 		version = BuildConstants.VERSION,
+		authors = {"lmichaelis"},
 		description = "A Velocity plugin for chat and player list synchronization across multiple servers."
 )
 public class Ionicity {
