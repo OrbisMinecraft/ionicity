@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Formats a message with LuckPerms placeholders.
  */
-public class LuckPermsFormatter implements ChatFormatter {
+public class LuckPermsFormatter extends Formatter {
 	private static final Pattern META_PATTERN = Pattern.compile("%luckperms_meta_([a-zA-Z0-9_.:/*+#-])%");
 	private final PlayerAdapter<Player> adapter;
 

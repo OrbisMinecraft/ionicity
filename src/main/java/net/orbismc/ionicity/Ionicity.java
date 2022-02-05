@@ -10,8 +10,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.luckperms.api.LuckPermsProvider;
-import net.orbismc.ionicity.format.LuckPermsFormatter;
+import net.orbismc.ionicity.format.Formatter;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
 
@@ -44,10 +43,7 @@ public class Ionicity {
 		final var config = IonicityConfig.load(configurationDirectory.resolve("config.yml").toFile());
 		final var formatter = new IonicityChatFormatter(config.getNode("format").getString("<%username%> %message%"));
 
-		// If LuckPerms is installed, add its formatter
-		if (server.getPluginManager().isLoaded("luckperms")) {
-			formatter.addFormatter(new LuckPermsFormatter(LuckPermsProvider.get()));
-		}
+		Formatter.addAvailableFormatters(server.getPluginManager());
 
 		server.getEventManager().register(this, new IonicityEventListener(this, formatter));
 	}
