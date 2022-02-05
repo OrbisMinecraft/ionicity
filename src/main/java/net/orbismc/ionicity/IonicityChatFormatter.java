@@ -26,7 +26,7 @@ public final class IonicityChatFormatter {
 		var formatted = COLOR_PATTERN.matcher(this.format).replaceAll(match -> "§" + match.group(1));
 
 		// replace username and message
-		formatted = formatted.replace("%username%", player.getUsername()).replace("%message%", message);
+		formatted = formatted.replace("%message%", message);
 
 		// apply sub-formatters
 		formatted = Formatter.formatString(formatted, player);

@@ -21,6 +21,7 @@ public abstract class Formatter {
 	 */
 	public static void addAvailableFormatters(final @NotNull PluginManager pluginManager) {
 		if (pluginManager.isLoaded("luckperms")) addFormatter(new LuckPermsFormatter(LuckPermsProvider.get()));
+		addFormatter(new BasicPlayerFormatter());
 	}
 
 	/**
