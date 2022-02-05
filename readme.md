@@ -7,6 +7,9 @@ It works by intercepting chat packets and broadcasting them to every player on e
 includes support for [MiniMessage](https://docs.adventure.kyori.net/minimessage) placeholders and basic support 
 for [LuckPerms](https://luckperms.net/).
 
+## Permissions
+Ionicity exposes a management command (`/ionicity`) which requires the `ionicity.manage` permission node to use.
+
 ## Building
 Ionicity is a Gradle project. To build it, you will need an up-to-date build of JDK 17 installed
 on your machine. To get started, download the source code (either by downloading the ZIP file or 
