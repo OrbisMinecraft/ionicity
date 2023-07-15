@@ -5,13 +5,13 @@
 package net.orbismc.ionicity;
 
 import com.google.inject.Inject;
-import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import net.orbismc.ionicity.command.IonicityCommand;
+import net.orbismc.ionicity.command.MessageCommand;
 import net.orbismc.ionicity.format.TemplateProvider;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
@@ -55,6 +55,7 @@ public class Ionicity {
 
 		server.getEventManager().register(this, new IonicityEventListener(this));
 		commands.register(commands.metaBuilder("ionicity").build(), new IonicityCommand(this));
+		commands.register(commands.metaBuilder("m").build(), new MessageCommand(this));
 	}
 
 	/**

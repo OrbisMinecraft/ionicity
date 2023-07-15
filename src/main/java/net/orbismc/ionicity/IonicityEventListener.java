@@ -10,14 +10,19 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.orbismc.ionicity.format.TemplateProvider;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * The main velocity event listener class of <i>ionicity</i>. Handles and implements all handlers necessary for
  * sending cross-server messages.
  */
 public class IonicityEventListener {
+	public static final LegacyComponentSerializer SERIAL = LegacyComponentSerializer.legacyAmpersand();
 	private final MiniMessage message;
 	private final Ionicity plugin;
 
@@ -32,7 +37,7 @@ public class IonicityEventListener {
 		event.setResult(PlayerChatEvent.ChatResult.denied());
 
 		final var templates = TemplateProvider.getAllTemplates(event.getPlayer());
-		templates.add(TagResolver.resolver("message", Tag.inserting(Component.text(event.getMessage()))));
+		templates.add(TagResolver.resolver("message", Tag.inserting(SERIAL.deserialize(event.getMessage()))));
 
 		final var message = this.message.deserialize(plugin.getFormat(), TagResolver.resolver(templates));
 
